@@ -1,10 +1,13 @@
 import React from 'react'
-import {} from 'react-'
+import { Navbar,Container } from 'react-bootstrap'
+
 function EcomNavbar() {
     return (
-        <div>
-            
-        </div>
+        <Navbar expand="lg" variant="dark" bg="dark">
+        <Container>
+          <Navbar.Brand>eCommerce</Navbar.Brand>
+        </Container>
+      </Navbar>
     )
 }
 
