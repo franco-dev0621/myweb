@@ -1,0 +1,21 @@
+.proglines {
+  border: 1px solid #ffd500;
+  margin-top: 0px;
+}
+
+.progdiv {
+  border-radius: 5px;
+  background-color: #c4caf5;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+.zoom {
+  transition: transform .2s; /* Animation */ 
+  margin: 0;
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
