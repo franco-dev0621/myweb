@@ -22,7 +22,10 @@ export default class Cart extends Component {
                     <div>                    
                     {cartItems.map(item => (
                         <Media 
-                            style={{marginBottom: '10px'}}
+                            style={{marginBottom: '10px', 
+                                    marginTop: '10px',  
+                                    backgroundColor: '#d2faf8'
+                                    }}
                             key={cartItems._id}> 
                             <img
                                 style={{height: "4em", with: "4em"}} 
@@ -38,8 +41,8 @@ export default class Cart extends Component {
                                 </Button>
                             </Media.Body>                            
                         </Media>                        
-                    ))}                                                         
-                </div> 
+                        ))}                                                         
+                    </div> 
 
                 {cartItems.length !== 0 && (
                     <div style={{textAlign: 'right', marginTop: '20px'}}>
