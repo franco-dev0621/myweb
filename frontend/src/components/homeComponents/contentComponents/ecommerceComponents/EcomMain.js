@@ -1,9 +1,10 @@
 import React from 'react'
 import data from './data.json'
-import {Row,Col} from 'react-bootstrap'
+import {Row,Col, Container} from 'react-bootstrap'
 import Products from './EcomMainComponents/Products';
 
 import Filter from './EcomMainComponents/Filter';
+import Cart from './EcomMainComponents/Cart';
 
 
 
@@ -12,11 +13,31 @@ class EcomMain extends React.Component {
         super();
         this.state = {
             products : data.products,
+            cartItems: [],
             size:"",
             sort:"",
         };
     }
-
+    removeFromCart = (product) => {
+        const cartItems = this.state.cartItems.slice();
+        this.setState({
+            cartItems: cartItems.filter((x) => x._id !== product._id),
+        });        
+    }
+    addToCart = (product) => {
+        const cartItems = this.state.cartItems.slice();
+        let alreadyInCart = false;
+        cartItems.forEach((item) => {
+            if(item._id === product._id){
+                item.count++;
+                alreadyInCart = true;                
+            }
+        });
+        if(!alreadyInCart){
+            cartItems.push({...product, count: 1 });
+        }
+        this.setState({cartItems});
+    }
     //sorting using price with asc or desc value
     sortProducts = (event) => {
         const sort = event.target.value;
@@ -58,6 +79,7 @@ class EcomMain extends React.Component {
 
     render () {
         return (
+        <Container>
             <Row>
                 <Col>
                     <Filter 
@@ -67,12 +89,18 @@ class EcomMain extends React.Component {
                         filterProducts={this.filterProducts}
                         sortProducts={this.sortProducts}
                     ></Filter>
-                    <Products products={this.state.products}></Products>
+                    <Products 
+                        products={this.state.products} 
+                        addToCart={this.addToCart}>
+                    </Products>
                 </Col>
-                <Col xs lg="2">
-                    Cart Items
+                <Col md lg="3">                    
+                        <Cart 
+                            cartItems={this.state.cartItems} 
+                            removeFromCart={this.removeFromCart}/>                    
                 </Col>
             </Row>
+        </Container>
           )
     }
 }
