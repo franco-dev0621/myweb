@@ -7,16 +7,18 @@ import EcomFooter from './ecommerceComponents/EcomFooter'
 
 export default function Ecommerce () {
 	return (
-		<Container style={{marginTop: '100px', backgroundColor: 'white'}}>
-			<header>
-				This is for NAVBAR component
-			</header>
-			<main>
-				This is for the main content
-			</main>
-			<footer>
-				All right is reserved.
-			</footer>
+		<Container>
+			<div style={{marginTop: '100px', backgroundColor: 'white'}}>
+				<header>
+					<EcomNavbar />
+				</header>
+				<main>
+					<EcomMain />
+				</main>
+				<footer>
+					<EcomFooter />
+				</footer>
+			</div>
 		</Container>
 		)
 }
