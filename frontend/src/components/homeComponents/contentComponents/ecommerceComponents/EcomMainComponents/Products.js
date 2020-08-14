@@ -24,12 +24,16 @@ export default class Products extends Component {
                                                 </Col>
                                             </Row>                          
                                         </Card.Body>
-                                    </Card>
-                                </Col>                                
-                        ))} 
-                        <br></br>                                                    
+                                    </Card>                        
+                                                   
+
+                                </Col>                            
+                        ))}                                                     
+
                 </Row>
             </Container>
         )
     }
+
 }
+

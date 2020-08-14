@@ -2,7 +2,10 @@ import React from 'react'
 import data from './data.json'
 import {Row,Col} from 'react-bootstrap'
 import Products from './EcomMainComponents/Products';
+
 import Filter from './EcomMainComponents/Filter';
+
+
 
 class EcomMain extends React.Component {
     constructor () {
@@ -13,6 +16,7 @@ class EcomMain extends React.Component {
             sort:"",
         };
     }
+
     //sorting using price with asc or desc value
     sortProducts = (event) => {
         const sort = event.target.value;
