@@ -2,8 +2,11 @@ import React from 'react'
 import data from './data.json'
 import {Row,Col, Container} from 'react-bootstrap'
 import Products from './EcomMainComponents/Products';
+
 import Filter from './EcomMainComponents/Filter';
 import Cart from './EcomMainComponents/Cart';
+
+
 
 class EcomMain extends React.Component {
     constructor () {
