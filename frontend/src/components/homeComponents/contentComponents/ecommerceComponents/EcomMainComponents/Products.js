@@ -20,7 +20,7 @@ export default class Products extends Component {
                                                     {product.price}                          
                                                 </Col>
                                                 <Col style={{textAlign: "right"}}>    
-                                                    <Button variant="warning">Add to Cart</Button>
+                                                    <Button onClick={() => this.props.addToCart(product)} variant="warning">Add to Cart</Button>
                                                 </Col>
                                             </Row>                          
                                         </Card.Body>
