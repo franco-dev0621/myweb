@@ -13,16 +13,22 @@ class EcomMain extends React.Component {
         super();
         this.state = {
             products : data.products,
-            cartItems: [],
+            //this will make the cart items remain on page even if it refreshes
+            cartItems: localStorage.getItem("cartItems")? JSON.parse(localStorage.getItem("cartItems")): [],
             size:"",
             sort:"",
         };
+    }
+    createOrder = (order) => {
+        alert("Need to save order for " + order.name)
     }
     removeFromCart = (product) => {
         const cartItems = this.state.cartItems.slice();
         this.setState({
             cartItems: cartItems.filter((x) => x._id !== product._id),
-        });        
+        });   
+        // ensure that the cartitems will be removed     
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((x) => x._id !== product._id))); 
     }
     addToCart = (product) => {
         const cartItems = this.state.cartItems.slice();
@@ -37,6 +43,7 @@ class EcomMain extends React.Component {
             cartItems.push({...product, count: 1 });
         }
         this.setState({cartItems});
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
     //sorting using price with asc or desc value
     sortProducts = (event) => {
@@ -97,7 +104,9 @@ class EcomMain extends React.Component {
                 <Col md lg="3">                    
                         <Cart 
                             cartItems={this.state.cartItems} 
-                            removeFromCart={this.removeFromCart}/>                    
+                            removeFromCart={this.removeFromCart}
+                            createOrder={this.createOrder}
+                        />                    
                 </Col>
             </Row>
         </Container>
