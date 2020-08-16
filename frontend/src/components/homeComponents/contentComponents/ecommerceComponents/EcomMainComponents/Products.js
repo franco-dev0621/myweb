@@ -5,7 +5,7 @@ import { Card, Row, Col, Button, Container  } from 'react-bootstrap'
 export default class Products extends Component {
     render() {
         return (
-            <Container>
+            <Container fluid>
                 <Row>                    
                         {this.props.products.map(product =>(
                                 <Col md={4} key={product._id}>
@@ -24,12 +24,9 @@ export default class Products extends Component {
                                                 </Col>
                                             </Row>                          
                                         </Card.Body>
-                                    </Card>                        
-                                                   
-
+                                    </Card>                                                                        
                                 </Col>                            
                         ))}                                                     
-
                 </Row>
             </Container>
         )
