@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Media, Container, Row, Col, Form } from 'react-bootstrap';
+import Fade from "react-reveal"
+import { Button, Media, Container, Row, Col, Form, Badge } from 'react-bootstrap';
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default class Cart extends Component {
     constructor(props){
@@ -25,47 +27,57 @@ export default class Cart extends Component {
         this.props.createOrder(order);
     };
     render() {
+        const styleCart = {
+            marginTop: '10px',
+            height: '2rem', 
+            width: '2rem'
+        }
         const {cartItems} = this.props;
         return (  
                  
             <Container>
-                <div  style={{marginBottom: '20px', textAlign: 'center'}}>
+                <div  style={{marginBottom: '20px', textAlign: 'right'}}>
                     {cartItems.length ===0 ? 
                     (
-                        <div>
-                            Cart is empty
+                        <div>                            
+                            <AiOutlineShoppingCart 
+                                style={styleCart}/> 
+                            <Badge variant="danger">0</Badge>
                         </div>
                     ) : (
                         <div>
-                            You have {cartItems.length} in the cart{" "}
+                            <AiOutlineShoppingCart 
+                                style={styleCart}/> 
+                            <Badge variant="danger">{cartItems.length}</Badge>
                         </div>
                     )}
                 </div>
-                    <div>                    
-                    {cartItems.map(item => (
-                        <Media 
-                            style={{marginBottom: '10px', 
-                                    marginTop: '10px',  
-                                    backgroundColor: '#d2faf8'
-                                    }}
-                            key={cartItems._id}> 
-                            <img
-                                style={{height: "4em", with: "4em"}} 
-                                src={item.image} 
-                                alt={item.title}></img>
-                            <Media.Body>
-                                <div style={{fontSize: '12px'}}>
-                                    {item.title}
-                                </div>
-                                {item.price} x {item.count} {" "}
-                                <Button variant="danger" onClick={()=>this.props.removeFromCart(item)}>
-                                    Remove
-                                </Button>
-                            </Media.Body>                            
-                        </Media>                        
-                        ))}                                                         
-                    </div> 
-
+                    <Fade left cascade>
+                        <div>                    
+                        {cartItems.map(item => (
+                            <Media 
+                                style={{marginBottom: '10px', 
+                                        marginTop: '10px',  
+                                        backgroundColor: '#d2faf8'
+                                        }}
+                                key={cartItems._id}> 
+                                <img
+                                    style={{height: "4em", with: "4em"}} 
+                                    src={item.image} 
+                                    alt={item.title}></img>
+                                <Media.Body>
+                                    <div style={{fontSize: '12px'}}>
+                                        {item.title}
+                                    </div>
+                                    {item.price} x {item.count} {" "}
+                                    <Button variant="danger" onClick={()=>this.props.removeFromCart(item)}>
+                                        Remove
+                                    </Button>
+                                </Media.Body>                            
+                            </Media>                        
+                        ))}
+                        </div> 
+                    </Fade>
                 {cartItems.length !== 0 && (
                     <div>
                     <div style={{textAlign: 'right', marginTop: '20px'}}>
@@ -86,6 +98,7 @@ export default class Cart extends Component {
                     </Row>                                   
                 </div>
                 {this.state.showCheckout &&(
+                    <Fade clear>
                     <Container style={{
                         borderStyle: 'ridge', 
                         marginTop: '10px'
@@ -125,7 +138,8 @@ export default class Cart extends Component {
                         </Button>
                         </div>
                     </Form>                    
-                    </Container>                    
+                    </Container>  
+                    </Fade>                  
                 )}
                 </div>
                 )}              
