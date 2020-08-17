@@ -3,8 +3,11 @@ import { Row,Col, Container } from 'react-bootstrap'
 
 export default class Filter extends Component {
     render() {
-        return (
-            <Container fluid style={{marginTop: "10px", marginBottom: "10px"}}>
+        return (        
+            <Container fluid style={{
+                    marginTop: "10px", 
+                    marginBottom: "10px",
+            }}>
                 <Row>                    
                     <Col>
                         <div>{this.props.count} Products</div>                

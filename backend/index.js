@@ -4,6 +4,10 @@ const socketio = require('socket.io');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+const bodyParser = require("body-parser");
+const shortid = require("shortid");
+
+
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
 const router = require('./router');
@@ -11,6 +15,10 @@ const router = require('./router');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+
+
+app.use(bodyParser.json());
+
 
 require('dotenv').config();
 
@@ -65,13 +73,20 @@ io.on('connect', (socket) => {
   })
 });
 
+const productsRouter = require('./routes/products');
+const ordersRouter = require('./routes/orders');
+
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
+
+app.use('/products', productsRouter);
+app.use('/orders', ordersRouter);
+
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 
 //PORTS
 server.listen(process.env.PORT || 5000, () => console.log(`Messenger App Server has started on 5000`));
-app.listen(port, () => {console.log(`Excersise Tracker Server is running on port: ${port}`);
+app.listen(port, () => {console.log(`Main Server is running on port: ${port}`);
 });
