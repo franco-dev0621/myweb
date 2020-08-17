@@ -72,17 +72,19 @@ io.on('connect', (socket) => {
     }
   })
 });
-
+//database for ECOMMERCE
 const productsRouter = require('./routes/products');
 const ordersRouter = require('./routes/orders');
 
+//database for EXercise app
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 
+//route for ecomerce
 app.use('/products', productsRouter);
 app.use('/orders', ordersRouter);
 
-
+//route for exercise app
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 
