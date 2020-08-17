@@ -56,9 +56,17 @@ export default class Products extends Component {
                                 maringTop: '300px'
                             }}>
                                 <Col>
-                                    <img src={product.image} alt={product.title}></img>
+                                    <img 
+                                        src={product.image} 
+                                        alt={product.title}
+                                        style={{                                           
+                                            height: '500px',
+                                            width: '500px'
+                                        }}
+                                    ></img>
                                 </Col>
                                 <Col>
+                                    <br></br><br></br><br></br><br></br>
                                     <p><strong>{product.title}</strong></p>
                                     <p>{product.description}</p>
                                     <p>Available Sizes:{" "}
@@ -77,13 +85,13 @@ export default class Products extends Component {
                                             this.closeModal();
                                         }}
                                     >
-                                    Add to cart
-                                    </Button>                                                    
+                                        Add to cart
+                                    </Button>{" "}     
+                                    <Button variant="primary" onClick={this.closeModal}>
+                                        close
+                                    </Button>                                               
                                 </Col>
-                            </Row>                                                                               
-                            <Button variant="primary" onClick={this.closeModal}>
-                                close
-                            </Button>
+                            </Row>                                                                                                           
                             </Zoom>                                                                                    
                         </Modal>
                     </Container>
