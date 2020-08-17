@@ -5,7 +5,8 @@ import Products from './EcomMainComponents/Products';
 
 import Filter from './EcomMainComponents/Filter';
 import Cart from './EcomMainComponents/Cart';
-
+import store from './store'
+import { Provider } from 'react-redux';
 
 
 class EcomMain extends React.Component {
@@ -86,6 +87,7 @@ class EcomMain extends React.Component {
 
     render () {
         return (
+        <Provider store={store}>
         <Container>
             <Row>
                 <Col>
@@ -110,6 +112,7 @@ class EcomMain extends React.Component {
                 </Col>
             </Row>
         </Container>
+        </Provider>
           )
     }
 }
