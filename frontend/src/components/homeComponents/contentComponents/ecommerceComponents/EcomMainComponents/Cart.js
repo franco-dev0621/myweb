@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import Fade from "react-reveal"
 import { Button, Media, Container, Row, Col, Form, Badge } from 'react-bootstrap';
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { removeFromCart } from '../actions/cartActions';
+import { connect } from 'react-redux'
 
-export default class Cart extends Component {
+class Cart extends Component {
     constructor(props){
         super(props);
         this.state={ 
@@ -54,7 +56,7 @@ export default class Cart extends Component {
                 </div>
                     <Fade left cascade>
                         <div>                    
-                        {cartItems.map(item => (
+                        {cartItems.map((item) => (
                             <Media 
                                 style={{marginBottom: '10px', 
                                         marginTop: '10px',  
@@ -70,7 +72,8 @@ export default class Cart extends Component {
                                         {item.title}
                                     </div>
                                     {item.price} x {item.count} {" "}
-                                    <Button variant="danger" onClick={()=>this.props.removeFromCart(item)}>
+                                    <Button variant="danger" 
+                                    onClick={() => this.props.removeFromCart(item)}>
                                         Remove
                                     </Button>
                                 </Media.Body>                            
@@ -147,3 +150,9 @@ export default class Cart extends Component {
         )
     }
 }
+export default connect(
+    (state) => ({      
+      cartItems: state.cart.cartItems,
+    }),
+    { removeFromCart }
+  )(Cart);
