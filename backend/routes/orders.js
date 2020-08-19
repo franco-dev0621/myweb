@@ -3,7 +3,7 @@ let Order = require('../models/order.model');
 
 router.route('/').get((req, res) => {
     Order.find()
-        .then(order => res.json(orders))
+        .then(orders => res.json(orders))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -32,6 +32,12 @@ router.route('/add').post((req, res) => {
 router.route('/:id').get((req, res) => {
     Order.findById(req.params.id)
     .then(order => res.json(order))
+    .catch(err => res.status(400).json('Error:' + err));
+});
+
+router.route('/:id').delete((req, res) => {
+    Order.findByIdAndDelete(req.params.id)
+    .then(order => res.json('Order deleted.'))
     .catch(err => res.status(400).json('Error:' + err));
 });
 

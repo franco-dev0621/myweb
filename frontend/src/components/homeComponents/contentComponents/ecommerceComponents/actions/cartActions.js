@@ -1,6 +1,6 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "../types";
 
-export const removeFromCart = (product) => (dispatch) => {
+export const removeFromCart = (product) => (dispatch, getState) => {
     const cartItems = getState()
     .cart.cartItems.slice()
     .filter((x) => x._id !== product._id)

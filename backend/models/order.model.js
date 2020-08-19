@@ -13,8 +13,8 @@ const orderSchema = new Schema ({
         {
             _id: { type: String, required: true },
             title: { type: String, required: true },
-            price: { type: String, required: true },
-            count: { type: String, required: true },
+            price: { type: Number, required: true },
+            count: { type: Number, required: true },
         },        
     ],
 }, {
